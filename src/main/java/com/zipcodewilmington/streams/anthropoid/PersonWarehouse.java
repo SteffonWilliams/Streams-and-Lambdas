@@ -35,7 +35,10 @@ public final class PersonWarehouse {
      * @return list of uniquely named Person objects
      */ //TODO
     public static Stream<Person> getUniquelyNamedPeople() {
-        return null;
+
+
+        return people.stream()
+                .distinct();
     }
 
 
@@ -44,7 +47,10 @@ public final class PersonWarehouse {
      * @return a Stream of respective
      */ //TODO
     public static Stream<Person> getUniquelyNamedPeopleStartingWith(Character character) {
-        return null;
+
+        return people.stream()
+                .distinct()
+                .filter(person -> person.getName().charAt(0)== character);
     }
 
     /**
@@ -52,14 +58,22 @@ public final class PersonWarehouse {
      * @return a Stream of respective
      */ //TODO
     public static Stream<Person> getFirstNUniquelyNamedPeople(int n) {
-        return null;
+
+
+        return people.stream()
+                .distinct()
+                .limit(n);
+
     }
 
     /**
      * @return a mapping of Person Id to the respective Person name
      */ // TODO
     public static Map<Long, String> getIdToNameMap() {
-        return null;
+
+        return people.stream()
+                .collect(Collectors.toMap(Person::getPersonalId, Person::getName));
+
     }
 
 
@@ -82,13 +96,17 @@ public final class PersonWarehouse {
      * @return list of names of Person objects
      */ // TODO
     public static List<String> getNames() {
-        return null;
+        return people.stream()
+                .map(Person::getName)
+                .collect(Collectors.toList());
     }
 
     /**
      * @return ArrayList of all Person objects in this warehouse
      */
     public static ArrayList<Person> getPeople() {
+
+
         return people;
     }
 
